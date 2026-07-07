@@ -1,0 +1,514 @@
+.upgrade-page {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+.upgrade-page button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.upgrade-topbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  width: min(100% - 72px, 1440px);
+  min-height: 90px;
+  margin: 0 auto;
+}
+
+.upgrade-brand,
+.footer-brand button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  padding: 0;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.upgrade-brand img,
+.footer-brand img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.upgrade-brand span,
+.footer-brand button span {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.upgrade-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(44px, 6vw, 86px);
+}
+
+.upgrade-nav button {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, .88);
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.upgrade-account {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.upgrade-account span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 94px;
+  height: 38px;
+  border-radius: 999px;
+  background: #5a94c3;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.upgrade-account img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.upgrade-hero {
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  width: min(100% - 48px, 1080px);
+  margin: 76px auto 0;
+  text-align: center;
+}
+
+.upgrade-hero h1 {
+  margin: 0;
+  font-size: clamp(32px, 3vw, 42px);
+  line-height: 1.1;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.billing-toggle {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .08);
+}
+
+.billing-toggle button {
+  min-width: 70px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, .62);
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.billing-toggle button.active {
+  background: #fff;
+  color: #101010;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(64px, 6.25vw, 88px);
+  width: min(100% - 72px, 960px);
+  margin: 78px auto 0;
+}
+
+.plan-card {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 1128px;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .015)),
+    #191919;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, .34);
+  padding: 36px 38px 42px;
+}
+
+.plan-card--pro {
+  background:
+    linear-gradient(180deg, rgba(95, 151, 193, .1), rgba(255, 255, 255, .015)),
+    #191919;
+}
+
+.plan-content {
+  display: grid;
+  align-content: start;
+  gap: 34px;
+}
+
+.plan-card h2 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.plan-card h2 span {
+  font-weight: 850;
+}
+
+.plan-title-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.plan-card h2.pro-title {
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 520;
+  letter-spacing: 0;
+}
+
+.pro-discount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 28px;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.plan-intro,
+.plan-section p,
+.plan-section li {
+  color: rgba(255, 255, 255, .86);
+  font-size: 18px;
+  line-height: 1.8;
+  font-weight: 760;
+}
+
+.plan-intro {
+  margin: 0;
+}
+
+.plan-section {
+  display: grid;
+  gap: 18px;
+}
+
+.plan-section h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 900;
+}
+
+.plan-section ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.plan-section p {
+  margin: 0;
+}
+
+.plan-action {
+  display: grid;
+  gap: 16px;
+  margin-top: 54px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, .58);
+}
+
+.plan-action strong {
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.price-row span {
+  color: rgba(255, 255, 255, .64);
+  font-size: 16px;
+  font-weight: 850;
+}
+
+.price-row del {
+  margin-left: auto;
+  color: rgba(255, 255, 255, .38);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.plan-action button {
+  width: 100%;
+  height: 46px;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  color: #0d0d0d;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.plan-action small {
+  color: rgba(255, 255, 255, .62);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.payment-strip {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  width: min(100% - 48px, 1080px);
+  margin: 58px auto 86px;
+  color: rgba(255, 255, 255, .58);
+  text-align: center;
+}
+
+.payment-strip p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.payment-strip > div {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.pay-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  color: #050505;
+  font-size: 19px;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.pay-icon--alipay {
+  background: #13a9ff;
+}
+
+.pay-icon--wechat {
+  background: #72ce45;
+}
+
+.pay-labels {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.upgrade-footer {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 1.65fr);
+  align-items: start;
+  gap: 72px;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, .18);
+  padding: 48px clamp(36px, 5vw, 72px) 58px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  align-self: start;
+  gap: 18px;
+  min-width: 0;
+}
+
+.footer-brand small {
+  color: rgba(255, 255, 255, .52);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(110px, 1fr));
+  gap: 32px;
+}
+
+.footer-links section {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.footer-links h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, .78);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 760;
+}
+
+.upgrade-page button:focus-visible,
+.upgrade-page a:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, .9);
+  outline-offset: 4px;
+}
+
+@media (max-width: 980px) {
+  .upgrade-topbar {
+    grid-template-columns: 1fr auto;
+    width: min(100% - 36px, 1440px);
+  }
+
+  .upgrade-nav {
+    grid-column: 1 / -1;
+    order: 3;
+    justify-self: center;
+  }
+
+  .upgrade-account {
+    gap: 12px;
+  }
+
+  .upgrade-hero {
+    margin-top: 48px;
+  }
+
+  .plan-grid {
+    grid-template-columns: 1fr;
+    width: min(100% - 36px, 620px);
+    margin-top: 52px;
+  }
+
+  .plan-card {
+    min-height: auto;
+  }
+
+  .upgrade-footer {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+}
+
+@media (max-width: 620px) {
+  .upgrade-topbar {
+    min-height: 78px;
+  }
+
+  .upgrade-brand span,
+  .footer-brand button span {
+    font-size: 22px;
+  }
+
+  .upgrade-brand img,
+  .footer-brand img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .upgrade-account span {
+    min-width: 70px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .upgrade-account img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .upgrade-nav {
+    gap: 30px;
+  }
+
+  .upgrade-nav button {
+    font-size: 15px;
+  }
+
+  .plan-card {
+    padding: 28px 24px 30px;
+    border-radius: 22px;
+  }
+
+  .plan-card h2 {
+    font-size: 26px;
+  }
+
+  .plan-card h2.pro-title {
+    font-size: 30px;
+  }
+
+  .plan-title-row {
+    gap: 17px;
+  }
+
+  .pro-discount {
+    width: 92px;
+    height: 29px;
+  }
+
+  .plan-intro,
+  .plan-section p,
+  .plan-section li {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .footer-brand {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
