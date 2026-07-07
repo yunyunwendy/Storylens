@@ -2,3 +2,7 @@
 .env.*
 node_modules/
 dist/
+<<<<<<< HEAD
+.pnpm-store/
+=======
+>>>>>>> 90ebb5f5d7a5bd450a9acff2811c81681f318ca1
