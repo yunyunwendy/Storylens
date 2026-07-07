@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { assetPath, routePath } from "../routing.js";
 import "../styles/workspace.css";
 
 const DESIGN_WIDTH = 2000;
@@ -215,8 +216,8 @@ export default function WorkspacePage({ onNavigate }) {
     <main className="workspace-page" aria-label="StoryLens 工作空间">
       <div className="workspace-stage" ref={stageRef}>
         <header className="workspace-topbar" aria-label="顶部导航">
-          <a className="workspace-brand" href="/" aria-label="StoryLens">
-            <img src="/panel/logo.png" alt="" />
+          <a className="workspace-brand" href={routePath("/")} aria-label="StoryLens">
+            <img src={assetPath("/panel/logo.png")} alt="" />
             <span>StoryLens</span>
           </a>
           <nav className="workspace-center-nav" aria-label="工作台导航">
@@ -334,7 +335,7 @@ export default function WorkspacePage({ onNavigate }) {
           </form>
         </aside>
 
-        <img className="workspace-toolbar" src="/panel/toolbar.png" alt="工作空间工具栏" />
+        <img className="workspace-toolbar" src={assetPath("/panel/toolbar.png")} alt="工作空间工具栏" />
         <div className="workspace-status" role="status" aria-live="polite" hidden={!status}>{status}</div>
       </div>
     </main>
@@ -423,7 +424,7 @@ function NodeControls({ id, models, model, mode, isOpen, onOpen, onSelect, onSet
                   onSelect(id, name);
                 }}
               >
-                <img src={`/second-page-assets/${icon}`} alt="" />
+                <img src={assetPath(`/second-page-assets/${icon}`)} alt="" />
                 <span>{name}</span>
               </button>
             ))}

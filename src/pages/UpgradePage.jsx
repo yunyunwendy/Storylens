@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { assetPath } from "../routing.js";
 import "../styles/upgrade-page.css";
 
 const basicFeatures = [
@@ -36,7 +37,7 @@ export default function UpgradePage({ onNavigate }) {
     <main className="upgrade-page">
       <header className="upgrade-topbar" aria-label="顶部导航">
         <button className="upgrade-brand" type="button" onClick={() => onNavigate?.("/")}>
-          <img src="/landing-assets/logo-palette.png" alt="" />
+          <img src={assetPath("/landing-assets/logo-palette.png")} alt="" />
           <span>StoryLens</span>
         </button>
         <nav className="upgrade-nav" aria-label="升级页导航">
@@ -45,7 +46,7 @@ export default function UpgradePage({ onNavigate }) {
         </nav>
         <div className="upgrade-account">
           <span>升级</span>
-          <img src="/upgrade-assets/avatar-pro.png" alt="" />
+          <img src={assetPath("/upgrade-assets/avatar-pro.png")} alt="" />
         </div>
       </header>
 
@@ -130,7 +131,7 @@ export default function UpgradePage({ onNavigate }) {
       <footer className="upgrade-footer">
         <div className="footer-brand">
           <button type="button" onClick={() => onNavigate?.("/")}>
-            <img src="/landing-assets/logo-palette.png" alt="" />
+            <img src={assetPath("/landing-assets/logo-palette.png")} alt="" />
             <span>StoryLens</span>
           </button>
           <small>@ 2026年 StoryLens.ai 公司</small>

@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
+import { assetPath, routePath } from "../routing.js";
 import "../styles/landing.css";
 
 const heroSlides = [
-  "/landing-assets/hero-slides/hero-slide-01.jpg",
-  "/landing-assets/hero-slides/hero-slide-02.jpg",
-  "/landing-assets/hero-slides/hero-slide-03.jpg",
-  "/landing-assets/hero-slides/hero-slide-04.jpg",
-  "/landing-assets/hero-slides/hero-slide-05.jpg",
-  "/landing-assets/hero-slides/hero-slide-06.jpg",
-  "/landing-assets/hero-slides/hero-slide-07.jpg",
+  assetPath("/landing-assets/hero-slides/hero-slide-01.jpg"),
+  assetPath("/landing-assets/hero-slides/hero-slide-02.jpg"),
+  assetPath("/landing-assets/hero-slides/hero-slide-03.jpg"),
+  assetPath("/landing-assets/hero-slides/hero-slide-04.jpg"),
+  assetPath("/landing-assets/hero-slides/hero-slide-05.jpg"),
+  assetPath("/landing-assets/hero-slides/hero-slide-06.jpg"),
+  assetPath("/landing-assets/hero-slides/hero-slide-07.jpg"),
 ];
 
 export default function LandingPage({ onNavigate }) {
@@ -75,7 +76,7 @@ export default function LandingPage({ onNavigate }) {
             ))}
           </div>
           <a className="brand" href="#start" aria-label="StoryLens">
-            <img src="/landing-assets/logo-palette.png" alt="" />
+            <img src={assetPath("/landing-assets/logo-palette.png")} alt="" />
             <span>StoryLens</span>
           </a>
           <div className="hero-actions">
@@ -86,13 +87,13 @@ export default function LandingPage({ onNavigate }) {
               ref={triggerRef}
               onClick={handleNavigateToUpgrade}
             >
-              <img src="/landing-assets/upgrade-pill.jpg" alt="升级" />
+              <img src={assetPath("/landing-assets/upgrade-pill.jpg")} alt="升级" />
             </button>
-            <img className="hero-avatar" src="/upgrade-assets/avatar-pro.png" alt="" />
+            <img className="hero-avatar" src={assetPath("/upgrade-assets/avatar-pro.png")} alt="" />
           </div>
           <div className="hero__content">
             <h1>开启你的绘本之旅，把回忆变成会说话的故事。</h1>
-            <a className="button button--hero" href="/second" onClick={handleNavigateToSecond}>立即开始</a>
+            <a className="button button--hero" href={routePath("/second")} onClick={handleNavigateToSecond}>立即开始</a>
           </div>
         </section>
 
@@ -101,8 +102,8 @@ export default function LandingPage({ onNavigate }) {
             <h2>专属创作台</h2>
             <p>统一调整文本和图片模型，让创作更简单。</p>
           </div>
-          <img className="studio-visual" src="/landing-assets/studio-workbench.jpg" alt="专属创作台界面" />
-          <a className="button" href="/second" onClick={handleNavigateToSecond}>试用模型</a>
+          <img className="studio-visual" src={assetPath("/landing-assets/studio-workbench.jpg")} alt="专属创作台界面" />
+          <a className="button" href={routePath("/second")} onClick={handleNavigateToSecond}>试用模型</a>
         </section>
 
         <section className="section section--engines" id="engines">
@@ -111,9 +112,9 @@ export default function LandingPage({ onNavigate }) {
             <p>我们接入了世界上最新最强大的图文的模型</p>
           </div>
           <div className="engine-strip" aria-label="引擎支持">
-            <img className="engine-banner" src="/landing-assets/engine-models-banner.jpg" alt="Image 2、Nanobannana、Midjourney、Gemmi、即梦" />
+            <img className="engine-banner" src={assetPath("/landing-assets/engine-models-banner.jpg")} alt="Image 2、Nanobannana、Midjourney、Gemmi、即梦" />
           </div>
-          <a className="button" href="/second" onClick={handleNavigateToSecond}>试用模型</a>
+          <a className="button" href={routePath("/second")} onClick={handleNavigateToSecond}>试用模型</a>
         </section>
 
         <section className="section section--why" id="why">
@@ -121,9 +122,9 @@ export default function LandingPage({ onNavigate }) {
             <h2>为什么选择Story Lens</h2>
             <p>你的故事，值得被全世界听见</p>
           </div>
-          <img className="story-image" src="/landing-assets/new-story.jpg" alt="女孩在海边翻看自己的故事绘本" />
+          <img className="story-image" src={assetPath("/landing-assets/new-story.jpg")} alt="女孩在海边翻看自己的故事绘本" />
           <h3>创作你的分身，生成属于你的故事</h3>
-          <a className="button" href="/second" onClick={handleNavigateToSecond}>立即开始</a>
+          <a className="button" href={routePath("/second")} onClick={handleNavigateToSecond}>立即开始</a>
         </section>
 
         <section className="section section--templates" id="templates">
@@ -132,15 +133,15 @@ export default function LandingPage({ onNavigate }) {
             <p>海量风格模板，总有一款属于你</p>
           </div>
           <div className="gallery" aria-label="风格模板">
-            <img src="/landing-assets/gallery-01.jpg" alt="窗台插画模板" />
-            <img src="/landing-assets/gallery-02.jpg" alt="房子插画模板" />
-            <img src="/landing-assets/gallery-03.jpg" alt="翻开的绘本模板" />
-            <img src="/landing-assets/gallery-04.jpg" alt="幻想少女模板" />
-            <img src="/landing-assets/gallery-05.jpg" alt="双人头像模板" />
-            <img src="/landing-assets/gallery-06.jpg" alt="角色设定模板" />
-            <img src="/landing-assets/gallery-07.jpg" alt="儿童角色模板" />
-            <img src="/landing-assets/gallery-08.jpg" alt="睡前故事模板" />
-            <img src="/landing-assets/gallery-09.jpg" alt="海边故事模板" />
+            <img src={assetPath("/landing-assets/gallery-01.jpg")} alt="窗台插画模板" />
+            <img src={assetPath("/landing-assets/gallery-02.jpg")} alt="房子插画模板" />
+            <img src={assetPath("/landing-assets/gallery-03.jpg")} alt="翻开的绘本模板" />
+            <img src={assetPath("/landing-assets/gallery-04.jpg")} alt="幻想少女模板" />
+            <img src={assetPath("/landing-assets/gallery-05.jpg")} alt="双人头像模板" />
+            <img src={assetPath("/landing-assets/gallery-06.jpg")} alt="角色设定模板" />
+            <img src={assetPath("/landing-assets/gallery-07.jpg")} alt="儿童角色模板" />
+            <img src={assetPath("/landing-assets/gallery-08.jpg")} alt="睡前故事模板" />
+            <img src={assetPath("/landing-assets/gallery-09.jpg")} alt="海边故事模板" />
           </div>
         </section>
       </main>

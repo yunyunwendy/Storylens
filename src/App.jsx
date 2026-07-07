@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage.jsx";
 import SecondPage from "./pages/SecondPage.jsx";
 import UpgradePage from "./pages/UpgradePage.jsx";
 import WorkspacePage from "./pages/WorkspacePage.jsx";
+import { routeFromLocation, routePath } from "./routing.js";
 
 const ROUTES = {
   HOME: "/",
@@ -28,11 +29,11 @@ function normalizeRoute(pathname) {
 }
 
 export default function App() {
-  const [route, setRoute] = useState(() => normalizeRoute(window.location.pathname));
+  const [route, setRoute] = useState(() => normalizeRoute(routeFromLocation(window.location.pathname)));
 
   useEffect(() => {
     function handlePopState() {
-      setRoute(normalizeRoute(window.location.pathname));
+      setRoute(normalizeRoute(routeFromLocation(window.location.pathname)));
     }
 
     window.addEventListener("popstate", handlePopState);
@@ -41,7 +42,7 @@ export default function App() {
 
   function navigate(nextRoute) {
     const normalizedRoute = normalizeRoute(nextRoute);
-    window.history.pushState(null, "", normalizedRoute);
+    window.history.pushState(null, "", routePath(normalizedRoute));
     window.scrollTo(0, 0);
     setRoute(normalizedRoute);
   }

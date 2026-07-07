@@ -592,9 +592,7 @@
   height: 180px;
   margin-top: 24px;
   border-radius: 12px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .04)),
-    url("/second-page-assets/IMG_5005.JPG") center / cover;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .04));
   overflow: hidden;
 }
 

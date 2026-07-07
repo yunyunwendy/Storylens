@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { assetPath, routePath } from "../routing.js";
 import "../styles/second-page.css";
 
 const works = [
@@ -202,7 +203,7 @@ export default function SecondPage({ onNavigate }) {
     sessionStorage.setItem("storylens-generation", JSON.stringify({
       prompt: `参考精选作品《${selectedWork.title}》生成同款绘本画面，保留温暖、细腻、儿童绘本质感。`,
       storyText: `新的故事从《${selectedWork.title}》的画面气质出发：主角走进柔和的光里，遇见一段关于想象、陪伴与勇气的绘本旅程。`,
-      imageUrl: `/second-page-assets/${selectedWork.image}`,
+      imageUrl: assetPath(`/second-page-assets/${selectedWork.image}`),
       referenceImage: "",
       ratio: "3:4",
       speed: "10s",
@@ -218,21 +219,21 @@ export default function SecondPage({ onNavigate }) {
       <div className="second-page">
         <main className="page">
           <section className="hero" id="home">
-            <img className="hero-bg" src="/second-page-assets/IMG_5005.JPG" alt="" />
+            <img className="hero-bg" src={assetPath("/second-page-assets/IMG_5005.JPG")} alt="" />
             <div className="hero-shade" aria-hidden="true"></div>
             <header className="nav">
               <a className="brand" href="#home" aria-label="StoryLens">
-                <img src="/second-page-assets/book.png" alt="" />
+                <img src={assetPath("/second-page-assets/book.png")} alt="" />
                 <span>StoryLens</span>
               </a>
               <nav className="links" aria-label="主导航">
-                <a href="/" onClick={handleNavigateHome}>主页</a>
+                <a href={routePath("/")} onClick={handleNavigateHome}>主页</a>
                 <a href="#ideas">创意灵感</a>
-                <a href="/panel" onClick={handleNavigateToWorkspace}>工作空间</a>
+                <a href={routePath("/panel")} onClick={handleNavigateToWorkspace}>工作空间</a>
               </nav>
               <div className="nav-actions">
                 <button className="upgrade" type="button" onClick={() => onNavigate?.("/page4")}>升级</button>
-                <img className="nav-avatar" src="/upgrade-assets/avatar-pro.png" alt="" />
+                <img className="nav-avatar" src={assetPath("/upgrade-assets/avatar-pro.png")} alt="" />
               </div>
             </header>
 
@@ -240,7 +241,7 @@ export default function SecondPage({ onNavigate }) {
               <h1>这里，每个人的故事都是畅销书</h1>
               <div className="prompt-panel">
                 <button className={`upload-card${uploadedImage ? " has-upload" : ""}`} type="button" aria-label="上传角色照片" onClick={() => fileInputRef.current?.click()}>
-                  <img src={uploadedImage?.url || "/second-page-assets/upload.png"} alt="" />
+                  <img src={uploadedImage?.url || assetPath("/second-page-assets/upload.png")} alt="" />
                 </button>
                 <input className="file-input" ref={fileInputRef} type="file" accept="image/*" onChange={handleUploadChange} />
                 <textarea ref={promptRef} placeholder="上传角色照片，让我想想他（她）最适合什么故事……”"></textarea>
@@ -261,7 +262,7 @@ export default function SecondPage({ onNavigate }) {
                         setIsModelMenuOpen((isOpen) => !isOpen);
                       }}
                     >
-                      <img className="agent-icon" src="/second-page-assets/agent-cube.png" alt="" />
+                      <img className="agent-icon" src={assetPath("/second-page-assets/agent-cube.png")} alt="" />
                       <span>{selectedModel}</span>
                     </button>
                     <div className="model-menu" id="modelMenu" role="listbox" aria-label="模型列表" hidden={!isModelMenuOpen}>
@@ -278,7 +279,7 @@ export default function SecondPage({ onNavigate }) {
                             setIsModelMenuOpen(false);
                           }}
                         >
-                          <img src={`/second-page-assets/${icon}`} alt="" />
+                          <img src={assetPath(`/second-page-assets/${icon}`)} alt="" />
                           <span>{name}</span>
                         </button>
                       ))}
@@ -299,14 +300,14 @@ export default function SecondPage({ onNavigate }) {
           <section className="feature-strip" id="ideas" aria-label="创意灵感">
             {features.map(([image, title, message]) => (
               <button className="feature-card" type="button" key={title} onClick={() => setActiveInfo({ image, title, message })}>
-                <img src={`/second-page-assets/${image}`} alt="" />
+                <img src={assetPath(`/second-page-assets/${image}`)} alt="" />
                 <strong>{title}</strong>
               </button>
             ))}
           </section>
 
           <section className="playbook" aria-label="爆款玩法">
-            <img className="playbook-bg" src="/second-page-assets/IMG_5277.JPG" alt="" />
+            <img className="playbook-bg" src={assetPath("/second-page-assets/IMG_5277.JPG")} alt="" />
             <div className="playbook-overlay" aria-hidden="true"></div>
             <div className="playbook-copy">
               <h2>爆款玩法</h2>
@@ -314,9 +315,9 @@ export default function SecondPage({ onNavigate }) {
               <button type="button" onClick={() => setActiveInfo({ title: "爆款玩法", message: "上传角色照片后，StoryLens 会自动生成适合分身的故事分镜和画面风格。" })}>立即体验</button>
             </div>
             <div className="playbook-gallery">
-              <img src="/second-page-assets/IMG_5822.JPG" alt="" />
-              <img src="/second-page-assets/IMG_5791.JPG" alt="" />
-              <img src="/second-page-assets/IMG_5295.JPG" alt="" />
+              <img src={assetPath("/second-page-assets/IMG_5822.JPG")} alt="" />
+              <img src={assetPath("/second-page-assets/IMG_5791.JPG")} alt="" />
+              <img src={assetPath("/second-page-assets/IMG_5295.JPG")} alt="" />
             </div>
             <h3>不用画笔，只需一个念头，StoryLens 帮你把童话变现</h3>
           </section>
@@ -326,9 +327,9 @@ export default function SecondPage({ onNavigate }) {
             <div className="grid" id="grid">
               {works.map(([image, views, title]) => (
                 <button className="work-card" type="button" key={image} onClick={() => setSelectedWork({ image, views, title })}>
-                  <img className="work-image" src={`/second-page-assets/${image}`} alt="" />
+                  <img className="work-image" src={assetPath(`/second-page-assets/${image}`)} alt="" />
                   <span className="views">
-                    <img className="eye-icon" src="/second-page-assets/eye.png" alt="" />
+                    <img className="eye-icon" src={assetPath("/second-page-assets/eye.png")} alt="" />
                     {views}
                   </span>
                 </button>
@@ -342,14 +343,14 @@ export default function SecondPage({ onNavigate }) {
             <button className="modal-close" id="modalClose" type="button" aria-label="关闭" ref={modalCloseRef} disabled={isGenerating} onClick={closeGenerateModal}>×</button>
             {selectedWork ? (
               <>
-                <img className="modal-work-image" src={`/second-page-assets/${selectedWork.image}`} alt="" />
+                <img className="modal-work-image" src={assetPath(`/second-page-assets/${selectedWork.image}`)} alt="" />
                 <h2 id="generateTitle">{selectedWork.title}</h2>
                 <p id="generateMessage">浏览量 {selectedWork.views}，点击生成页可用同类风格继续创作。</p>
                 <button className="modal-generate-same" type="button" onClick={handleGenerateSame}>生成同款</button>
               </>
             ) : activeInfo ? (
               <>
-                {activeInfo.image && <img className="modal-info-image" src={`/second-page-assets/${activeInfo.image}`} alt="" />}
+                {activeInfo.image && <img className="modal-info-image" src={assetPath(`/second-page-assets/${activeInfo.image}`)} alt="" />}
                 <h2 id="generateTitle">{activeInfo.title}</h2>
                 <p id="generateMessage">{activeInfo.message}</p>
               </>
