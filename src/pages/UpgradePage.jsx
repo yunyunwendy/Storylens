@@ -45,7 +45,7 @@ export default function UpgradePage({ onNavigate }) {
           <button type="button" onClick={() => onNavigate?.("/panel")}>工作空间</button>
         </nav>
         <div className="upgrade-account">
-          <span>升级</span>
+          <span className="storylens-upgrade-button">升级</span>
           <img src={assetPath("/upgrade-assets/avatar-pro.png")} alt="" />
         </div>
       </header>

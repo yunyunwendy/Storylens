@@ -110,21 +110,19 @@ img {
 }
 
 .nav-pill {
-  display: block;
-  width: clamp(72px, 7.22vw, 104px);
-  aspect-ratio: 416 / 136;
+  width: 104px;
+  height: 36px;
+  aspect-ratio: auto;
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: transparent;
+  background: #5a94c3;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 900;
   cursor: pointer;
-  overflow: hidden;
-}
-
-.nav-pill img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  overflow: visible;
 }
 
 .hero-avatar {
@@ -434,6 +432,12 @@ img {
     margin-top: 22px;
   }
 
+  .nav-pill {
+    width: 78px;
+    height: 32px;
+    font-size: 14px;
+  }
+
   .section__head h2,
   .section--templates .section__head h2 {
     font-size: 26px;
@@ -564,7 +568,8 @@ img {
   }
 
   .landing-page .nav-pill {
-    width: clamp(63px, 6.35vw, 92px);
+    width: 104px;
+    height: 36px;
   }
 
   .landing-page .button {

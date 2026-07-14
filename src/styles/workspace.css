@@ -97,15 +97,15 @@
 
 .workspace-upgrade {
   justify-self: end;
-  width: 153px;
-  height: 51px;
+  width: 104px;
+  height: 36px;
   border: 0;
-  border-radius: 28px;
-  background: #057fa9;
+  border-radius: 999px;
+  background: #5a94c3;
   color: #fff;
-  font-size: 27px;
+  font-size: 16px;
   line-height: 1;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0;
 }
 

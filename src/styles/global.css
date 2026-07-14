@@ -30,6 +30,34 @@ button {
   cursor: pointer;
 }
 
+.storylens-upgrade-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 104px;
+  height: 36px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #5a94c3;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0;
+  white-space: nowrap;
+  box-shadow: none;
+}
+
 [hidden] {
   display: none !important;
+}
+
+@media (max-width: 620px) {
+  .storylens-upgrade-button {
+    width: 78px;
+    height: 32px;
+    padding: 0 16px;
+    font-size: 14px;
+  }
 }

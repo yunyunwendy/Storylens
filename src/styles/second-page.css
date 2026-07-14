@@ -110,14 +110,14 @@
 
 .second-page .upgrade {
   width: 104px;
-  height: 35px;
+  height: 36px;
   border: 0;
-  border-radius: 20px;
-  background: #078cc0;
+  border-radius: 999px;
+  background: #5a94c3;
   color: #fff;
   font-size: 16px;
   line-height: 1;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .second-page .nav-actions {

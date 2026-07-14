@@ -81,13 +81,13 @@ export default function LandingPage({ onNavigate }) {
           </a>
           <div className="hero-actions">
             <button
-              className="nav-pill"
+              className="storylens-upgrade-button nav-pill"
               type="button"
               aria-label="打开升级弹层"
               ref={triggerRef}
               onClick={handleNavigateToUpgrade}
             >
-              <img src={assetPath("/landing-assets/upgrade-pill.jpg")} alt="升级" />
+              升级
             </button>
             <img className="hero-avatar" src={assetPath("/upgrade-assets/avatar-pro.png")} alt="" />
           </div>

@@ -232,7 +232,7 @@ export default function SecondPage({ onNavigate }) {
                 <a href={routePath("/panel")} onClick={handleNavigateToWorkspace}>工作空间</a>
               </nav>
               <div className="nav-actions">
-                <button className="upgrade" type="button" onClick={() => onNavigate?.("/page4")}>升级</button>
+                <button className="storylens-upgrade-button upgrade" type="button" onClick={() => onNavigate?.("/page4")}>升级</button>
                 <img className="nav-avatar" src={assetPath("/upgrade-assets/avatar-pro.png")} alt="" />
               </div>
             </header>

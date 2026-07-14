@@ -224,7 +224,7 @@ export default function WorkspacePage({ onNavigate }) {
             <button type="button" onClick={() => onNavigate?.("/")}>主页</button>
             <h1>工作空间</h1>
           </nav>
-          <button className="workspace-upgrade" type="button" onClick={() => onNavigate?.("/page4")}>升级</button>
+          <button className="storylens-upgrade-button workspace-upgrade" type="button" onClick={() => onNavigate?.("/page4")}>升级</button>
         </header>
 
         <WorkspaceConnections connections={connections} />
