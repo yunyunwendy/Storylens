@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   min-height: 100vh;
-  overflow: clip;
+  overflow: auto;
   background: #000;
 }
 
@@ -17,16 +17,23 @@
   background-size: 53px 53px;
 }
 
-.workspace-stage {
-  position: fixed;
+.workspace-stage-shell {
+  position: relative;
   z-index: 1;
+  width: var(--stage-visual-width, 2000px);
+  height: var(--stage-visual-height, 1280px);
+  margin: 0 auto;
+}
+
+.workspace-stage {
+  position: absolute;
   left: 50%;
-  top: 50%;
+  top: 0;
   width: 2000px;
   height: 1280px;
   overflow: visible;
-  transform: translate(-50%, -50%) scale(var(--stage-scale, 1));
-  transform-origin: center center;
+  transform: translateX(-50%) scale(var(--stage-scale, 1));
+  transform-origin: top center;
   background: transparent;
 }
 
@@ -732,11 +739,18 @@
   outline-offset: 4px;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 820px) {
   .workspace-page {
     min-height: 100vh;
     overflow: auto;
     background: #000;
+  }
+
+  .workspace-stage-shell {
+    width: min(100% - 48px, 1180px);
+    height: auto;
+    min-height: 100vh;
+    margin: 0 auto;
   }
 
   .workspace-stage {
@@ -753,7 +767,7 @@
       "toolbar panel"
       "status status";
     gap: 22px 26px;
-    width: min(100% - 48px, 1180px);
+    width: 100%;
     height: auto;
     min-height: 100vh;
     margin: 0 auto;
@@ -853,6 +867,11 @@
     background-position: center top;
   }
 
+  .workspace-stage-shell {
+    width: min(100% - 32px, 560px);
+    height: auto;
+  }
+
   .workspace-stage {
     position: relative;
     left: auto;
@@ -868,7 +887,7 @@
       "toolbar"
       "status";
     gap: 22px;
-    width: min(100% - 32px, 560px);
+    width: 100%;
     height: auto;
     min-height: 100vh;
     margin: 0 auto;

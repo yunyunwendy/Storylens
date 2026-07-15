@@ -4,7 +4,7 @@ import "../styles/workspace.css";
 
 const DESIGN_WIDTH = 2000;
 const DESIGN_HEIGHT = 1280;
-const VISUAL_SCALE = 1.04;
+const VISUAL_SCALE = 1.02;
 
 const nodeFrames = {
   reference: { x: 121, y: 359, width: 416, height: 280 },
@@ -60,16 +60,21 @@ export default function WorkspacePage({ onNavigate }) {
 
   useEffect(() => {
     function fitStage() {
-      if (window.innerWidth <= 1440) {
+      if (window.innerWidth <= 820) {
         stageRef.current?.style.setProperty("--stage-scale", "1");
+        stageRef.current?.style.removeProperty("--stage-visual-width");
+        stageRef.current?.style.removeProperty("--stage-visual-height");
         return;
       }
 
-      const scale = Math.min(
-        window.innerWidth / DESIGN_WIDTH,
-        window.innerHeight / DESIGN_HEIGHT,
-      ) * VISUAL_SCALE;
+      const viewportWidth = window.innerWidth;
+      const pageGutter = viewportWidth >= 1600 ? 72 : 32;
+      const availableWidth = Math.max(360, viewportWidth - pageGutter);
+      const minimumScale = viewportWidth >= 1280 ? 0.64 : 0.56;
+      const scale = Math.min(1, Math.max(minimumScale, (availableWidth / DESIGN_WIDTH) * VISUAL_SCALE));
       stageRef.current?.style.setProperty("--stage-scale", scale.toFixed(4));
+      stageRef.current?.style.setProperty("--stage-visual-width", `${Math.round(DESIGN_WIDTH * scale)}px`);
+      stageRef.current?.style.setProperty("--stage-visual-height", `${Math.round(DESIGN_HEIGHT * scale)}px`);
     }
 
     fitStage();
@@ -214,18 +219,19 @@ export default function WorkspacePage({ onNavigate }) {
 
   return (
     <main className="workspace-page" aria-label="StoryLens 工作空间">
-      <div className="workspace-stage" ref={stageRef}>
-        <header className="workspace-topbar" aria-label="顶部导航">
-          <a className="workspace-brand" href={routePath("/")} aria-label="StoryLens">
-            <img src={assetPath("/panel/logo.png")} alt="" />
-            <span>StoryLens</span>
-          </a>
-          <nav className="workspace-center-nav" aria-label="工作台导航">
-            <button type="button" onClick={() => onNavigate?.("/")}>主页</button>
-            <h1>工作空间</h1>
-          </nav>
-          <button className="storylens-upgrade-button workspace-upgrade" type="button" onClick={() => onNavigate?.("/page4")}>升级</button>
-        </header>
+      <div className="workspace-stage-shell" ref={stageRef}>
+        <div className="workspace-stage">
+          <header className="workspace-topbar" aria-label="顶部导航">
+            <a className="workspace-brand" href={routePath("/")} aria-label="StoryLens">
+              <img src={assetPath("/panel/logo.png")} alt="" />
+              <span>StoryLens</span>
+            </a>
+            <nav className="workspace-center-nav" aria-label="工作台导航">
+              <button type="button" onClick={() => onNavigate?.("/")}>主页</button>
+              <h1>工作空间</h1>
+            </nav>
+            <button className="storylens-upgrade-button workspace-upgrade" type="button" onClick={() => onNavigate?.("/page4")}>升级</button>
+          </header>
 
         <WorkspaceConnections connections={connections} />
 
@@ -335,8 +341,9 @@ export default function WorkspacePage({ onNavigate }) {
           </form>
         </aside>
 
-        <img className="workspace-toolbar" src={assetPath("/panel/toolbar.png")} alt="工作空间工具栏" />
-        <div className="workspace-status" role="status" aria-live="polite" hidden={!status}>{status}</div>
+          <img className="workspace-toolbar" src={assetPath("/panel/toolbar.png")} alt="工作空间工具栏" />
+          <div className="workspace-status" role="status" aria-live="polite" hidden={!status}>{status}</div>
+        </div>
       </div>
     </main>
   );
