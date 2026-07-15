@@ -45,6 +45,7 @@ export default function WorkspacePage({ onNavigate }) {
   const dragRef = useRef(null);
   const [status, setStatus] = useState("");
   const [generation, setGeneration] = useState(null);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [nodeOffsets, setNodeOffsets] = useState(defaultOffsets);
   const [activeModelMenu, setActiveModelMenu] = useState("");
   const [nodeModels, setNodeModels] = useState({
@@ -199,13 +200,84 @@ export default function WorkspacePage({ onNavigate }) {
     setStatus(`${nodeModels[id] || "Agent"} 已切换为 ${mode}`);
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    if (textareaRef.current) {
-      textareaRef.current.value = "";
-      textareaRef.current.placeholder = "已加入生成队列";
+    if (isGenerating) {
+      return;
     }
-    setStatus("已加入生成队列");
+
+    const userPrompt = textareaRef.current?.value.trim() || "";
+    if (!userPrompt) {
+      textareaRef.current?.focus();
+      setStatus("请先输入需要生成的绘本需求");
+      return;
+    }
+
+    const generationModel = nodeModels.composer || "Midjourney";
+    const ratio = generation?.ratio || "3:4";
+    const speed = generation?.speed || "20s";
+    const existingReferenceImage = generation?.referenceImage || "";
+
+    setIsGenerating(true);
+    setStatus(`${generationModel} 正在生成绘本故事和画面...`);
+
+    try {
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: userPrompt,
+          image: existingReferenceImage,
+          ratio,
+          speed,
+          modelName: generationModel,
+        }),
+      });
+
+      const responseText = await response.text();
+      let result = {};
+      try {
+        result = responseText ? JSON.parse(responseText) : {};
+      } catch {
+        result = { error: responseText || "生成接口没有返回有效数据" };
+      }
+
+      if (!response.ok) {
+        throw new Error(result?.error || result?.message || "生成失败，请确认 API 服务正常");
+      }
+
+      const payload = {
+        ...generation,
+        ...result,
+        ratio,
+        speed,
+        modelName: generationModel,
+        userPrompt,
+        referenceImage: existingReferenceImage,
+        createdAt: Date.now(),
+      };
+
+      sessionStorage.setItem("storylens-generation", JSON.stringify(payload));
+      setGeneration(payload);
+      setNodeModels((current) => ({
+        ...current,
+        composer: generationModel,
+        ...(imageModels.some(([name]) => name === generationModel) ? { image: generationModel } : {}),
+        ...(textModels.some(([name]) => name === generationModel) ? { story: generationModel } : {}),
+      }));
+
+      if (textareaRef.current) {
+        textareaRef.current.value = "";
+        textareaRef.current.placeholder = "可以继续输入需求";
+      }
+      setStatus("已生成并更新工作台内容");
+    } catch (error) {
+      setStatus(error.message || "生成失败，请稍后重试");
+    } finally {
+      setIsGenerating(false);
+    }
   }
 
   function handleAdd() {
@@ -319,10 +391,10 @@ export default function WorkspacePage({ onNavigate }) {
               <div className="workspace-empty-panel">开始生成后，提示词、模型和画册信息会显示在这里。</div>
             )}
           </div>
-          <form className="workspace-composer" onSubmit={handleSubmit}>
+          <form className="workspace-composer" onSubmit={handleSubmit} aria-busy={isGenerating}>
             <label className="workspace-sr-only" htmlFor="request">描述需求</label>
             <p className="workspace-safety-reminder">提醒：避免生成恐怖、血腥、暴力、诡异或令人不适的图文内容</p>
-            <textarea id="request" ref={textareaRef} placeholder="描述需求"></textarea>
+            <textarea id="request" ref={textareaRef} placeholder="描述需求" disabled={isGenerating}></textarea>
             <div className="workspace-composer-actions">
               <button className="workspace-round-action" type="button" aria-label="添加" onClick={handleAdd}></button>
               <NodeControls
@@ -336,7 +408,7 @@ export default function WorkspacePage({ onNavigate }) {
                 onSetMode={setNodeMode}
                 compact
               />
-              <button className="workspace-send" type="submit" aria-label="发送"></button>
+              <button className="workspace-send" type="submit" aria-label={isGenerating ? "生成中" : "发送"} disabled={isGenerating}></button>
             </div>
           </form>
         </aside>

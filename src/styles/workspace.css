@@ -596,6 +596,21 @@
   margin-left: auto;
 }
 
+.workspace-composer[aria-busy="true"] textarea {
+  opacity: .72;
+}
+
+.workspace-composer[aria-busy="true"] .workspace-send {
+  cursor: wait;
+  opacity: .55;
+}
+
+.workspace-composer[aria-busy="true"] .workspace-send::before,
+.workspace-composer[aria-busy="true"] .workspace-send::after {
+  transform-origin: center;
+  animation: workspace-send-pulse 1s ease-in-out infinite;
+}
+
 .workspace-send::before {
   content: "";
   position: absolute;
@@ -618,6 +633,17 @@
   border-top: 2px solid #f1f1f1;
   border-left: 2px solid #f1f1f1;
   transform: translateX(-50%) rotate(45deg);
+}
+
+@keyframes workspace-send-pulse {
+  0%,
+  100% {
+    opacity: .55;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .workspace-node-controls--compact {
